@@ -39,10 +39,23 @@ const seed: [ProjectType, number, string, string, string][] = [
   ['S', 6, 'Personalized Logo in Canva', 'Due Nov 4', 'A personal logo digitised from my sketch.'],
 ]
 
+// Drop an image named after the activity code (e.g. e1.jpg, s0.png) into src/assets/projects/
+// and it replaces that activity's placeholder on both Gallery and Projects.
+const imageFiles = import.meta.glob<string>('./assets/projects/*.{png,jpg,jpeg,webp,gif,avif,svg}', { eager: true, query: '?url', import: 'default' })
+const images: Record<string, string> = Object.fromEntries(
+  Object.entries(imageFiles).map(([path, url]) => [path.split('/').pop()!.replace(/\.[^.]+$/, '').toLowerCase(), url]),
+)
+
+// Optional external links per activity id.
+const files: Record<string, Project['file']> = {
+  m1: { href: 'https://drive.google.com/file/d/1p0Ph2ULERNXypOVT0YSRxj7JxRBpgJ5i/view?usp=sharing', label: 'View on Google Drive' },
+}
+
 const make = ([type, n, title, period, summary]: (typeof seed)[number]): Project => {
   const code = `${type}${n}`
+  const id = code.toLowerCase()
   return {
-    id: code.toLowerCase(),
+    id,
     code,
     type,
     title,
@@ -53,7 +66,8 @@ const make = ([type, n, title, period, summary]: (typeof seed)[number]): Project
     tools: ['Tool one', 'Tool two'],
     challenges: ['Describe the main obstacle you faced.', 'Explain how you approached or solved it.'],
     outcomes: ['A measurable result, grade or recognition.', 'What you learned or would do differently.'],
-    image: { alt: `Screenshot or photo for ${title}. Replace with a description of your image.` },
+    image: { src: images[id], alt: `Screenshot or photo for ${title}. Replace with a description of your image.` },
+    file: files[id],
   }
 }
 
