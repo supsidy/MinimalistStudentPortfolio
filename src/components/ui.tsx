@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useRef, type ReactNode } from 'react'
 
 export type PageId = 'home' | 'gallery' | 'about' | 'projects' | 'style'
 export const NAV: { id: PageId; label: string }[] = [
@@ -32,9 +32,9 @@ export const PageHeader = ({ title, intro }: { title: string; intro: string }) =
 )
 
 const btn = 'inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-6 text-base font-semibold transition-colors'
-export const Button = ({ href, children, variant = 'primary', onClick }: { href?: string; children: ReactNode; variant?: 'primary' | 'secondary'; onClick?: () => void }) => {
+export const Button = ({ href, children, variant = 'primary', onClick, download }: { href?: string; children: ReactNode; variant?: 'primary' | 'secondary'; onClick?: () => void; download?: string }) => {
   const cls = `${btn} ${variant === 'primary' ? 'bg-accent text-white hover:bg-accent-dark' : 'border-2 border-ink text-ink hover:bg-ink hover:text-white'}`
-  return href ? <a href={href} className={cls}>{children}</a> : <button type="button" onClick={onClick} className={cls}>{children}</button>
+  return href ? <a href={href} download={download} className={cls}>{children}</a> : <button type="button" onClick={onClick} className={cls}>{children}</button>
 }
 
 export const Placeholder = ({ label, alt, className = '', round }: { label: string; alt: string; className?: string; round?: boolean }) => (
@@ -68,6 +68,36 @@ const paths: Record<string, ReactNode> = {
   run: <><circle cx="14" cy="4" r="2" /><path d="m6 21 4-6-2-3 4-3 3 3h3M10 9 7 11" /></>,
   globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></>,
   play: <path d="M8 5v14l11-7L8 5Z" />,
+  close: <path d="M6 6l12 12M18 6 6 18" />,
+  gamepad: <><path d="M6 9h12a4 4 0 0 1 3.9 4.9l-.8 3.4a2 2 0 0 1-3.4.9L15.5 16h-7l-2.2 2.2a2 2 0 0 1-3.4-.9l-.8-3.4A4 4 0 0 1 6 9Z" /><path d="M8 11.5v3M6.5 13h3M15.5 12.5v.01M17.5 14v.01" /></>,
+  film: <><rect x="3" y="4" width="18" height="16" rx="1" /><path d="M7 4v16M17 4v16M3 8h4M3 12h4M3 16h4M17 8h4M17 12h4M17 16h4" /></>,
+  toy: <><rect x="5" y="8" width="14" height="11" rx="2" /><path d="M12 5v3M9 13v.01M15 13v.01M9.5 16h5M3 12v3M21 12v3" /><circle cx="12" cy="3.5" r="1.5" /></>,
+  helmet: <><path d="M4 10a8 8 0 0 1 16 0v4c0 4-3 7-8 7s-8-3-8-7v-4Z" /><path d="M6.5 11.5 11 13M17.5 11.5 13 13M12 2v6" /></>,
+}
+
+// An image that opens full size in an overlay when clicked. Esc, the close button or a click outside closes it.
+export const ZoomImage = ({ src, alt, className = '' }: { src: string; alt: string; className?: string }) => {
+  const ref = useRef<HTMLDialogElement>(null)
+  return (
+    <>
+      <button type="button" onClick={() => ref.current?.showModal()} aria-label={`View larger: ${alt}`} className="group block w-full cursor-zoom-in overflow-hidden">
+        <img src={src} alt={alt} className={`transition-transform duration-300 group-hover:scale-[1.03] ${className}`} />
+      </button>
+      <dialog
+        ref={ref}
+        aria-label={alt}
+        onClick={(e) => e.target === e.currentTarget && ref.current?.close()}
+        className="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-ink/85"
+      >
+        <div className="relative">
+          <img src={src} alt={alt} className="max-h-[90vh] max-w-[94vw] object-contain" />
+          <button type="button" onClick={() => ref.current?.close()} aria-label="Close" className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow hover:bg-tint">
+            <Icon name="close" />
+          </button>
+        </div>
+      </dialog>
+    </>
+  )
 }
 export const Icon = ({ name, size = 22 }: { name: keyof typeof paths | string; size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>
@@ -75,9 +105,9 @@ export const Icon = ({ name, size = 22 }: { name: keyof typeof paths | string; s
 
 export const socials = [
   { name: 'LinkedIn', icon: 'linkedin', href: '#' },
-  { name: 'GitHub', icon: 'github', href: 'github.com/supsidy' },
-  { name: 'Instagram', icon: 'instagram', href: 'instagram.com/kohi.dxn' },
-  { name: 'Email', icon: 'mail', href: 'kurtxean.pasiona@unc.edu.ph' },
+  { name: 'GitHub', icon: 'github', href: 'https://github.com/supsidy' },
+  { name: 'Instagram', icon: 'instagram', href: 'https://instagram.com/kohi.dxn' },
+  { name: 'Email', icon: 'mail', href: 'mailto:kurtxean.pasiona@unc.edu.ph' },
 ]
 export const SocialLinks = ({ dark }: { dark?: boolean }) => (
   <ul className="flex gap-3">

@@ -14,7 +14,7 @@ export function Layout({ page, children }: { page: PageId; children: ReactNode }
       <a href="#main" className="absolute left-4 top-[-100px] z-50 rounded-md bg-ink px-4 py-3 text-white focus:top-4">Skip to main content</a>
       <header className="sticky top-0 z-40 border-b border-line bg-paper">
         <Container className="flex h-16 items-center justify-between">
-          <a href="#/home" className="text-lg font-bold tracking-tight">Kurt Pasiona</a>
+          <a href="#/home" className="text-lg font-bold tracking-tight">sitedaiji</a>
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">{NAV.map((n) => link(n.id, n.label))}</nav>
           <button type="button" className="flex h-12 items-center rounded-md border border-line px-4 text-sm font-semibold md:hidden" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>
             {open ? 'Close' : 'Menu'}
@@ -31,7 +31,7 @@ export function Layout({ page, children }: { page: PageId; children: ReactNode }
         <Container className="grid gap-10 py-14 md:grid-cols-3">
           <div>
             <p className="text-lg font-bold">Kurt Xean Pasiona</p>
-            <p className="mt-2 max-w-xs text-sm text-white/80">Student portfolio template. Replace this line with your degree and university.</p>
+            <p className="mt-2 max-w-xs text-sm text-white/80">1st Year BSIT Student, University of Nueva Caceres.</p>
           </div>
           <nav aria-label="Footer">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/80">Quick links</h2>

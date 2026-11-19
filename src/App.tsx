@@ -21,7 +21,7 @@ export default function App() {
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])
-  useEffect(() => { document.title = `${titles[page]} | Alex Morgan Portfolio` }, [page])
+  useEffect(() => { document.title = `${titles[page]} | sitedaiji` }, [page])
   const Page = pages[page]
   return <Layout page={page}><Page /></Layout>
 }

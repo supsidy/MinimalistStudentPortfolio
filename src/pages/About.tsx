@@ -1,17 +1,18 @@
 import { Button, Container, Icon, PageHeader, Section } from '../components/ui'
+import resume from '../assets/resume.pdf?url'
 
 const timeline = [
   ['2026 – Present', 'Bachelor of Science in Information Technology (BSIT)', 'University of Nueva Caceres'],
   ['2024 – 2026', 'TVL-ICT, Senior High School', 'Camarines Sur National High School', 'With High Honors, Leadership Awardee, Research Awardee, Work Immersion Awardee'],
-  ['2020 – 2024', 'Science, Technology, and Engineering (STE), Junior High School', 'Camarines Sur National High School', 'One sentence about your contribution.'],
-  ['2014 – 2020', 'Basic Education, Elementary', 'University of Nueva Caceres', 'Awards or notable subjects.'],
+  ['2020 – 2024', 'Science, Technology, and Engineering (STE), Junior High School', 'Camarines Sur National High School', 'With Honors'],
+  ['2014 – 2020', 'Basic Education, Elementary', 'University of Nueva Caceres', 'With Honors, Academic Excellence Awardee, Loyalty Awardee'],
 ]
-const hobbies = [['camera', 'Photography'], ['game', 'Gaming'] ,['book', 'Movies'], ['music', 'Music'], ['run', 'Toy Collecting'], ['globe', 'Tokusatsu']]
+const hobbies = [['camera', 'Photography'], ['gamepad', 'Gaming'], ['film', 'Movies'], ['music', 'Music'], ['toy', 'Toy Collecting'], ['helmet', 'Tokusatsu']]
 
 export default function About() {
   return (
     <>
-      <PageHeader title="About" intro="A short paragraph about your background, your values and what drives your studies. Replace this with your own words." />
+      <PageHeader title="About" intro="An aspiring web developer with so many tricks on my sleeve. These tricks are yet to be unsealed. I believe my full potiential is limitless." />
       <Section id="timeline" eyebrow="Background" title="Education and experience">
         <ol className="max-w-3xl border-l-2 border-line">
           {timeline.map(([date, role, org, text]) => (
@@ -27,7 +28,7 @@ export default function About() {
       </Section>
 
       <Section id="interests" eyebrow="Beyond study" title="Interests and hobbies" tint>
-        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {hobbies.map(([i, l]) => (
             <li key={l} className="flex flex-col items-center gap-3 border border-line bg-surface px-4 py-8 text-center">
               <span className="text-accent"><Icon name={i} size={30} /></span>
@@ -41,16 +42,16 @@ export default function About() {
         <Container className="grid gap-10 !px-0 md:grid-cols-2">
           <address className="not-italic">
             <ul className="space-y-4">
-              <li><a href="mailto:alex.morgan@university.edu" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="mail" /> kurtxean.pasiona@unc.edu.ph</a></li>
-              <li><a href="tel:+10000000000" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="phone" /> 0976 493 5064</a></li>
+              <li><a href="mailto:kurtxean.pasiona@unc.edu.ph" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="mail" /> kurtxean.pasiona@unc.edu.ph</a></li>
+              <li><a href="tel:+639764935064" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="phone" /> 0976 493 5064</a></li>
               <li><a href="#" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="linkedin" /> linkedin.com/in/your-name</a></li>
-              <li><a href="#" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="github" /> github.com/supsidy</a></li>
+              <li><a href="https://github.com/supsidy" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-3 hover:text-accent hover:underline underline-offset-4"><Icon name="github" /> github.com/supsidy</a></li>
             </ul>
           </address>
           <div className="border border-line bg-surface p-8">
             <h3 className="text-xl font-semibold">Resume</h3>
             <p className="mb-6 mt-2 text-muted">Download a one-page PDF summary of my education, experience and skills.</p>
-            <Button href="#"><Icon name="download" size={20} /> Download resume (PDF)</Button>
+            <Button href={resume} download="Kurt-Pasiona-Resume.pdf"><Icon name="download" size={20} /> Download resume (PDF)</Button>
           </div>
         </Container>
       </Section>

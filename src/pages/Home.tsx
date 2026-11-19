@@ -1,12 +1,13 @@
-import { Button, Container, Icon, Placeholder, Section, Tag } from '../components/ui'
+import { Button, Container, Icon, Section, Tag } from '../components/ui'
+import profile from '../assets/profile.jpg'
 
 const skills = [
-  { icon: 'code', title: 'Skill Area One', text: 'A short line about what you can do and the tools you use.' },
-  { icon: 'pen', title: 'Skill Area Two', text: 'A short line about what you can do and the tools you use.' },
-  { icon: 'chart', title: 'Skill Area Three', text: 'A short line about what you can do and the tools you use.' },
-  { icon: 'users', title: 'Skill Area Four', text: 'A short line about what you can do and the tools you use.' },
+  { icon: 'pen', title: 'Graphic Design', text: 'Posters, infographics, streamers, calling cards and logos designed in Canva.' },
+  { icon: 'chart', title: 'Productivity & AI Tools', text: 'Google Workspace with Gemini across Docs, Gmail, Sheets, Slides, Meet, Drive, Chat and Vids, with 9 completion badges.' },
+  { icon: 'code', title: 'Digital Literacy & Programming', text: 'Internet and security fundamentals, plus Python exercises from my programming classes.' },
+  { icon: 'users', title: 'Leadership & Organizations', text: 'Active in UNC Bidyo and the UNC SCIS Council, and often found working in the lab.' },
 ]
-const tags = ['Research', 'Teamwork', 'Presentation', 'Problem solving', 'Writing', 'Data analysis', 'Time management']
+const tags = ['Research', 'Presentation', 'Writing', 'Video editing', 'Teamwork', 'Time management', 'Problem solving']
 
 export default function Home() {
   return (
@@ -26,7 +27,7 @@ export default function Home() {
             </nav>
           </div>
           <div className="order-1 mx-auto w-56 md:order-2 md:w-full">
-            <Placeholder round label="Profile photo" alt="Portrait of Alex Morgan, replace with your professional photo" className="aspect-square w-full border-2 border-ink" />
+            <img src={profile} alt="Portrait of Kurt Pasiona in a dark suit, light blue shirt and striped tie" className="aspect-square w-full rounded-full border-2 border-ink object-cover" />
           </div>
         </Container>
       </section>
