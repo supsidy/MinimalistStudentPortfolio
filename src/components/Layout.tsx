@@ -36,9 +36,7 @@ export function Layout({ page, children }: { page: PageId; children: ReactNode }
           <nav aria-label="Footer">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/80">Quick links</h2>
             <ul className="space-y-1">
-              {NAV.map((n) => <li key={n.id}><a href={`#/${n.id}`} className="inline-flex min-h-10 items-center underline-offset-4 hover:underline">{n.label}</a></li>)}
-              <li><a href="#/style" className="inline-flex min-h-10 items-center underline-offset-4 hover:underline">Style guide</a></li>
-            </ul>
+              {NAV.map((n) => <li key={n.id}><a href={`#/${n.id}`} className="inline-flex min-h-10 items-center underline-offset-4 hover:underline">{n.label}</a></li>)}            </ul>
           </nav>
           <div>
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/80">Connect</h2>
