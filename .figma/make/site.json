@@ -1,0 +1,10 @@
+{
+  "description": "A customizable, accessible student portfolio template showcases skills, projects, education, and experience across polished, responsive pages.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
