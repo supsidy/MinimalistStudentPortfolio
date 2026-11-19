@@ -17,7 +17,9 @@ export default function Gallery() {
             <li key={i.code}>
               <a href={`#/projects?type=${i.type}&p=${i.id}`} className="group block">
                 <div className="relative">
-                  <Placeholder label={`Thumbnail ${i.code}`} alt={i.image.alt} className="aspect-[4/3] w-full" />
+                  {i.image.src
+                    ? <img src={i.image.src} alt={i.image.alt} className="aspect-[4/3] w-full border border-line object-cover" />
+                    : <Placeholder label={`Thumbnail ${i.code}`} alt={i.image.alt} className="aspect-[4/3] w-full" />}
                   <div className="absolute inset-0 flex flex-col justify-end bg-accent p-6 text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                     <p className="font-medium">{i.summary}</p>
                     <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold">View project <Icon name="arrow" size={16} /></span>
